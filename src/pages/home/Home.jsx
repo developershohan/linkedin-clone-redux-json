@@ -185,10 +185,10 @@ e.preventDefault();
             <Modal.Header className="post-modal-header"  >
               <div className="user-profile-info">
                   <div className="profile-pic">
-                  <img src="https://media.licdn.com/dms/image/D5603AQE14jrOMsBZzw/profile-displayphoto-shrink_100_100/0/1692680339641?e=1708560000&v=beta&t=sFYPWeh_WFsEKPXIX0Zmq2lA_EH5du2cIHBLK8l9c9w" alt="" />    
+                  <img src="https://scontent.fdac5-2.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=Ui83ULL09j8AX-F-bRr&_nc_ht=scontent.fdac5-2.fna&oh=00_AfAhw7-wTASn0FDoMt_uSNTfM656zGXr9AbFei5XxKkfqA&oe=65B35684" alt="" />    
                   </div>
                   <div className="user-info">
-                      <h6>Johurul islam <span><FaSortDown/></span></h6>
+                      <h6>Shohanur Rahman <span><FaSortDown/></span></h6>
                       <p>Post to Anyone</p>
                   </div>
               </div>
@@ -242,10 +242,10 @@ e.preventDefault();
             <Modal.Header className="post-modal-header"  >
               <div className="user-profile-info">
                   <div className="profile-pic">
-                  <img src="https://media.licdn.com/dms/image/D5603AQE14jrOMsBZzw/profile-displayphoto-shrink_100_100/0/1692680339641?e=1708560000&v=beta&t=sFYPWeh_WFsEKPXIX0Zmq2lA_EH5du2cIHBLK8l9c9w" alt="" />    
+                  <img src="https://scontent.fdac5-2.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=Ui83ULL09j8AX-F-bRr&_nc_ht=scontent.fdac5-2.fna&oh=00_AfAhw7-wTASn0FDoMt_uSNTfM656zGXr9AbFei5XxKkfqA&oe=65B35684" alt="" />    
                   </div>
                   <div className="user-info">
-                      <h6>Johurul islam <span><FaSortDown/></span></h6>
+                      <h6>Shohanur Rahman <span><FaSortDown/></span></h6>
                       <p>Post to Anyone</p>
                   </div>
               </div>
@@ -298,7 +298,7 @@ e.preventDefault();
                     <br />
                     <br />
                     <div className="profile-conten">
-                      <h6>Johurul Islam</h6>
+                      <h6>Shohanur Rahman</h6>
                       <p>WordPress | React | NodeJs | MongoDB</p>
                     </div>
                     <hr />
@@ -376,7 +376,7 @@ e.preventDefault();
             <div className="main-home">
                 <div className="top-area">
                   <div className="top-line">
-                    <img src="https://media.licdn.com/dms/image/D5603AQE14jrOMsBZzw/profile-displayphoto-shrink_100_100/0/1692680339641?e=1708560000&v=beta&t=sFYPWeh_WFsEKPXIX0Zmq2lA_EH5du2cIHBLK8l9c9w" alt="" />
+                    <img src="https://scontent.fdac5-2.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=Ui83ULL09j8AX-F-bRr&_nc_ht=scontent.fdac5-2.fna&oh=00_AfAhw7-wTASn0FDoMt_uSNTfM656zGXr9AbFei5XxKkfqA&oe=65B35684" alt="" />
                     <h6 onClick={handleShowPostModal}>Star a post</h6>
                   </div>
                   <div className="post-category">
@@ -431,7 +431,7 @@ e.preventDefault();
                         <div className="user-info-area">
                           <img src="https://media.licdn.com/dms/image/D5603AQE14jrOMsBZzw/profile-displayphoto-shrink_100_100/0/1692680339641?e=1708560000&v=beta&t=sFYPWeh_WFsEKPXIX0Zmq2lA_EH5du2cIHBLK8l9c9w" alt="" />
                           <div className="user-info">
-                              <h6>Johurul islam</h6>
+                              <h6>Shohanur Rahman</h6>
                               <p>WordPress / React / NodeJs / MongoDB</p>
                               <p>2 hours. <BiWorld/> </p>
                           </div>

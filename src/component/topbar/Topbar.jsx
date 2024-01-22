@@ -32,7 +32,7 @@ const Topbar = () => {
                     <li className="menu-item"> <Link to=""> <IoNotificationsSharp/> Notifications </Link> </li>
                     <li className="menu-item" > 
                         <Link to=""> 
-                            <img src="https://media.licdn.com/dms/image/D5603AQE14jrOMsBZzw/profile-displayphoto-shrink_800_800/0/1692680339642?e=1708560000&v=beta&t=y1wdwsyIpxhdbmGN1wzzBIrGPHtClPHFuYe-Cb63TrQ" alt="" />
+                            <img src="https://scontent.fdac5-2.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=Ui83ULL09j8AX-F-bRr&_nc_ht=scontent.fdac5-2.fna&oh=00_AfAhw7-wTASn0FDoMt_uSNTfM656zGXr9AbFei5XxKkfqA&oe=65B35684" alt="" />
                             <div className="me">
                                 <span>Me</span>
                                 <i> <IoMdArrowDropdown/> </i>
