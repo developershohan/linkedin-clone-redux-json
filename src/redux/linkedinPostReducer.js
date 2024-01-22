@@ -1,5 +1,5 @@
 
-import { GET_POST_FULFILLED, GET_POST_PENDING, GET_POST_REJECTED } from "./actionType";
+import { GET_POST_FULFILLED, GET_POST_PENDING, GET_POST_REJECTED, setpostModal } from "./actionType";
 import { initialState } from "./initialState";
 
 const LinkedinPostReducer =(state = initialState,action)=>{
@@ -24,6 +24,12 @@ const LinkedinPostReducer =(state = initialState,action)=>{
             loading: false,
             error: "Post rejected"
         }
+        case setpostModal:
+            return{
+                ...state,
+                setpostModal:true
+            }
+            
         default:
             return state;
     }

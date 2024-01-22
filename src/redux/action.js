@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_POST_FULFILLED, GET_POST_PENDING, GET_POST_REJECTED } from "./actionType"
+import { GET_POST_FULFILLED, GET_POST_PENDING, GET_POST_REJECTED,setpostModal } from "./actionType"
 
 export const get_linkedinPost = () => async (dispatch)=>{
     try {
@@ -9,4 +9,8 @@ export const get_linkedinPost = () => async (dispatch)=>{
     } catch (error) {
         dispatch({type: GET_POST_REJECTED})
     }
+}
+
+export const setPostModal =(dispatch)=>{
+    dispatch({type:setpostModal})
 }
