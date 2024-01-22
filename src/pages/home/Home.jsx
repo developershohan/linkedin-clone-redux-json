@@ -25,7 +25,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import RightSideBar from "../../component/right-sidebar/rightSideBar";
 import LeftSideBar from "../../component/LeftSideBar/LeftSideBar";
-import {  useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { get_linkedinPost } from "../../redux/action";
 
 
@@ -40,7 +40,7 @@ const Home = () => {
   useEffect(() => {
 
     dispatch(get_linkedinPost())
-}, [])
+  }, [])
 
   //////////////////=========create Part Start ===========//////////////////////////////
 
@@ -188,12 +188,12 @@ const Home = () => {
 
   return (
     <>
-    <div>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {message && <p>{message}</p>}
+      <div>
+        {loading && <p>Loading...</p>}
+        {error && <p>Error: {error}</p>}
+        {message && <p>{message}</p>}
 
-    </div>
+      </div>
       {/* edit modal */}
       <Container>
         <Row>
