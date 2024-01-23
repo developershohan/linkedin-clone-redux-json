@@ -4,7 +4,7 @@ export const initialState = {
     message: null, 
     error: null,
     loading: false,
-    setpostModal: false,
+
 }
 
 
