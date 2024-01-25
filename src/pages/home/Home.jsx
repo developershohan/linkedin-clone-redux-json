@@ -26,7 +26,7 @@ import Swal from "sweetalert2";
 import RightSideBar from "../../component/right-sidebar/rightSideBar";
 import LeftSideBar from "../../component/LeftSideBar/LeftSideBar";
 import { useDispatch, useSelector } from 'react-redux'
-import { get_linkedinPost } from "../../redux/action";
+import { add_inkedinPost, delete_inkedinPost, get_linkedinPost, update_linkedin } from "../../redux/action";
 
 
 const Home = () => {
@@ -36,7 +36,10 @@ const Home = () => {
     const { linkedinPost, message, error, loading } = useSelector(state => state.linkedinPost);
 
     const dispatch = useDispatch()
-  
+    const [createPost, setCreatePost] = useState({
+      post: "",
+      photo: "",
+    })
   
     useEffect(() => {
   
@@ -49,10 +52,7 @@ const Home = () => {
     const [postModal, setpostModal] = useState(false);
   
     //crate post data state
-    const [createPost, setCreatePost] = useState({
-      post: "",
-      photo: "",
-    })
+  
   
   
     //post modal show
@@ -75,10 +75,10 @@ const Home = () => {
     }
   
     //submit post data
-    const postDataSubmit = async (e) => {
+    const postDataSubmit =  (e) => {
       e.preventDefault();
   
-      await axios.post("http://localhost:6060/linkedinPost", createPost);
+      dispatch(add_inkedinPost(createPost))
       setCreatePost({
         post: "",
         photo: "",
@@ -92,27 +92,18 @@ const Home = () => {
         timer: 1500
       });
       // getAllpost();
+
     }
   
   
-  
-  
-  
-    //get all posts state
-    // const [allPost, setAllPost] = useState([]);
-  
-    // const getAllpost = async () => {
-  
-    //   const alldata = await axios.get("http://localhost:6060/linkedinPost")
-    //   setAllPost(alldata.data);
-    // }
+
   
   
     //////////////////=========create Part End ===========//////////////////////////////
   
     //////////////////=========Delete post start ===========//////////////////////////////
   
-    const handleDeletePost = async (id) => {
+    const handleDeletePost =  (id) => {
   
       Swal.fire({
         title: "Are you sure?",
@@ -124,13 +115,13 @@ const Home = () => {
         confirmButtonText: "Yes, delete it!"
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete(`http://localhost:6060/linkedinPost/${id}`);
+         dispatch(delete_inkedinPost(id))
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
             icon: "success"
           });
-          // getAllpost();
+
         }
       });
   
@@ -150,11 +141,11 @@ const Home = () => {
     });
   
     //update edit data
-    const handleEditPost = async (id) => {
+    const handleEditPost =  (item) => {
       setPostEditModal(true);
+      setEditPost(item)
   
-      const editData = await axios.get(`http://localhost:6060/linkedinPost/${id}`);
-      setEditPost(editData.data);
+   
   
     }
   
@@ -176,7 +167,7 @@ const Home = () => {
     // updated value submmit
     const editDataSubmit = async (e) => {
       e.preventDefault();
-      await axios.patch(`http://localhost:6060/linkedinPost/${editPost.id}`, editPost)
+      dispatch(update_linkedin(id))
       setPostEditModal(false);
       // getAllpost();
     }
@@ -330,12 +321,11 @@ const Home = () => {
                 </div>
               </div>
               <hr />
-              <h1>posts</h1>
-  
+              <h1>posts {linkedinPost.length}</h1>
   
               {linkedinPost && linkedinPost.length > 0
                         ?
-               linkedinPost && linkedinPost[0].map((item, index) => {
+              linkedinPost.reverse().map((item, index) => {
 
                   return (
                     <div className="post-area" key={index}>

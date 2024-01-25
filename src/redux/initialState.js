@@ -1,7 +1,7 @@
 export const initialState = {
 
     linkedinPost: [],
-    message: null, 
+    message: null,
     error: null,
     loading: false,
 
