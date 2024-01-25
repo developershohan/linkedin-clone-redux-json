@@ -39,12 +39,13 @@ try {
     dispactch({type:DELETE_POST_REJECTED})
 }
 }
+
 export const update_linkedin = (data) =>async(dispatch)=>{
 try {
     dispatch({type: UPDATE_POST_PENDING})
 
     await axios.patch(`http://localhost:6060/linkedinPost/${data.id}`, data)
-    dispatch({type: UPDATE_POST_FULFILLED})
+    dispatch({type: UPDATE_POST_FULFILLED, payload: data})
     
 } catch (error) {
     dispatch({type:UPDATE_POST_REJECTED})
