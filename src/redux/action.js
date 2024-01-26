@@ -14,9 +14,11 @@ export const get_linkedinPost = () => async (dispatch) => {
 
 // add linkedinPost
 export const add_inkedinPost = (data)=>async(dispatch)=>{
-
+    
     try {
+        
         dispatch({type: ADD_POST_PENDING})
+  
         await axios.post("http://localhost:6060/linkedinPost",data)
         dispatch({type: ADD_POST_FULFILLED, payload:data})
         dispatch(get_linkedinPost())
