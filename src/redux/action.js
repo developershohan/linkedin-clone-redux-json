@@ -13,30 +13,30 @@ export const get_linkedinPost = () => async (dispatch) => {
 }
 
 // add linkedinPost
-export const add_inkedinPost = (data)=>async(dispactch)=>{
+export const add_inkedinPost = (data)=>async(dispatch)=>{
 
     try {
-        dispactch({type: ADD_POST_PENDING})
+        dispatch({type: ADD_POST_PENDING})
         await axios.post("http://localhost:6060/linkedinPost",data)
-        dispactch({type: ADD_POST_FULFILLED, payload:data})
-        dispactch(get_linkedinPost())
+        dispatch({type: ADD_POST_FULFILLED, payload:data})
+        dispatch(get_linkedinPost())
     } catch (error) {
-        dispactch({type:ADD_POST_REJECTED})
+        dispatch({type:ADD_POST_REJECTED})
     }
 
 }
 
 
-export const delete_inkedinPost = (id) => async(dispactch)=>{
+export const delete_inkedinPost = (id) => async(dispatch)=>{
 try {
-    dispactch({type:DELETE_POST_PENDING})
+    dispatch({type:DELETE_POST_PENDING})
 
     await axios.delete(`http://localhost:6060/linkedinPost/${id}`,id)
-    dispactch({type:DELETE_POST_FULFILLED,payload: id})
-    dispactch(get_linkedinPost())
+    dispatch({type:DELETE_POST_FULFILLED,payload: id})
+    dispatch(get_linkedinPost())
 
 } catch (error) {
-    dispactch({type:DELETE_POST_REJECTED})
+    dispatch({type:DELETE_POST_REJECTED})
 }
 }
 
@@ -46,6 +46,7 @@ try {
 
     await axios.patch(`http://localhost:6060/linkedinPost/${data.id}`, data)
     dispatch({type: UPDATE_POST_FULFILLED, payload: data})
+    dispatch(get_linkedinPost())
     
 } catch (error) {
     dispatch({type:UPDATE_POST_REJECTED})

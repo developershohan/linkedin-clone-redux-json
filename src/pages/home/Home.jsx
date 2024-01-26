@@ -44,7 +44,7 @@ const Home = () => {
   useEffect(() => {
 
     dispatch(get_linkedinPost())
-  }, [dispatch])
+  }, [])
 
   //////////////////=========create Part Start ===========//////////////////////////////
 
@@ -82,30 +82,32 @@ const Home = () => {
 
 
     if (editMode) {
-      dispatch(update_linkedin(createPost))
+      dispatch(update_linkedin({ ...createPost, id: createPost.id }))
       seteditMode(false);
+      Swal.fire({
+        icon: "success",
+        title: "Post Updated Successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    
     } else {
       dispatch(add_inkedinPost(createPost))
+      Swal.fire({
+        icon: "success",
+        title: "Post Added Successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
-
+    setpostModal(false);
     setCreatePost({
       post: "",
       photo: "",
     })
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Your work has been saved",
-      showConfirmButton: false,
-      timer: 1500
-    });
-    // getAllpost();
+
 
   }
-
-
-
-
 
   //////////////////=========create Part End ===========//////////////////////////////
 
@@ -143,13 +145,14 @@ const Home = () => {
 
   //update edit data
   const handleEditPost = (item) => {
-    seteditMode(true)
+    seteditMode(true);
     setpostModal(true);
-    setCreatePost(item)
-
-
-
-  }
+    setCreatePost({
+      id: item.id, 
+      post: item.post || "", 
+      photo: item.photo || "",
+    });
+  };
 
 
 
@@ -184,9 +187,9 @@ const Home = () => {
               </Modal.Header>
               <form onSubmit={postDataSubmit} >
                 <Modal.Body className="post-body">
-                  <textarea type="text" name="post" id="" cols="50" rows="10" placeholder="What do you want to talk about?" value={createPost && createPost.post ? createPost.post : ""} onChange={handleInputChange}>
+                  <textarea type="text" name="post" id="" cols="50" rows="10" placeholder="What do you want to talk about?" value={createPost.post} onChange={handleInputChange}>
                   </textarea>
-                  <input type="text" name="photo" placeholder="Give media link here" className="form-control" value={createPost && createPost.photo ? createPost.photo : ""} onChange={handleInputChange} />
+                  <input type="text" name="photo" placeholder="Give media link here" className="form-control" value={createPost.photo} onChange={handleInputChange} />
 
                   <div className="imgogi">
                     <i> <FaRegSmile /> </i>
@@ -247,7 +250,7 @@ const Home = () => {
               </div>
             </div>
             <hr />
-            <h1>posts {linkedinPost.length}</h1>
+            <h4>Total Posts: {linkedinPost.length}</h4>
 
             {linkedinPost && linkedinPost.length > 0
               ?
@@ -296,10 +299,10 @@ const Home = () => {
 
                       <div className="post-body">
                         <div className="post-content">
-                          <p> {item.post} </p>
+                          <p> {item?.post} </p>
                         </div>
                         <div className="post-img">
-                          <img src={item.photo} />
+                          <img src={item?.photo} />
                         </div>
                       </div>
                       <div className="post-footer">
