@@ -27,7 +27,6 @@ import RightSideBar from "../../component/right-sidebar/rightSideBar";
 import LeftSideBar from "../../component/LeftSideBar/LeftSideBar";
 import { useDispatch, useSelector } from 'react-redux'
 import { add_inkedinPost, delete_inkedinPost, get_linkedinPost, update_linkedin } from "../../redux/action";
-import axios from "axios";
 
 
 const Home = () => {
@@ -72,48 +71,16 @@ const Home = () => {
 
   //get post data item
   const handleInputChange = (e) => {
-
-
-    const file = e.target.files[0];
-
-
     setCreatePost((prevState) => ({
-      ...prevState,
-      [e.target.name]: file,
-    }));
+      ...prevState, [e.target.name]: e.target.value
+    }))
   }
 
   //submit post data
-  const postDataSubmit = async (e) => {
+  const postDataSubmit = (e) => {
     e.preventDefault();
 
 
-    const data = new FormData()
-    data.append("file", createPost.photo)
-    data.append("upload_preset", "linkedin_photo_preset")
-    data.append("cloud_name", "dl1ru15me")
-
-    try {
-
-      await axios.post(
-        `https://api.cloudinary.com/v1_1/dl1ru15me/image/upload`,
-        data
-      ).then((res) => {
-        let { secure_url } = res.data;
-        console.log(secure_url);
-       const demo =  setCreatePost((prevState) => ({
-          ...prevState,
-          photo: secure_url
-        }))
-console.log(demo);
-      })
-
-
-    } catch (error) {
-      console.error(error);
-    }
-
-  
     if (editMode) {
       dispatch(update_linkedin({ ...createPost, id: createPost.id }))
       seteditMode(false);
@@ -123,7 +90,7 @@ console.log(demo);
         showConfirmButton: false,
         timer: 1500
       });
-
+    
     } else {
       dispatch(add_inkedinPost(createPost))
       Swal.fire({
@@ -181,8 +148,8 @@ console.log(demo);
     seteditMode(true);
     setpostModal(true);
     setCreatePost({
-      id: item.id,
-      post: item.post || "",
+      id: item.id, 
+      post: item.post || "", 
       photo: item.photo || "",
     });
   };
@@ -209,7 +176,7 @@ console.log(demo);
               <Modal.Header className="post-modal-header"  >
                 <div className="user-profile-info">
                   <div className="profile-pic">
-                    <img src="https://scontent.fdac24-4.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=FPahSXTgpmMAX-Ukz2s&_nc_ht=scontent.fdac24-4.fna&oh=00_AfCMmoPANcmV8SxJwA-5Kf3BAcAtxoymC82iD2hYcYXnvA&oe=65B94544" alt="" />
+                    <img src="https://scontent.fdac24-4.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=h4ckv853pEUAX89ClSt&_nc_ht=scontent.fdac24-4.fna&oh=00_AfD1w2zHbDBzs_9ceKQaVHc6z-2-ZI-PEcCkP9lUQgOZTw&oe=65BD39C4" alt="" />
                   </div>
                   <div className="user-info">
                     <h6>Shohanur Rahman <span><FaSortDown /></span></h6>
@@ -220,20 +187,9 @@ console.log(demo);
               </Modal.Header>
               <form onSubmit={postDataSubmit} >
                 <Modal.Body className="post-body">
-                  <textarea type="text" name="post" id="" cols="50" rows="6" placeholder="What do you want to talk about?" value={createPost.post || ""} onChange={(e) => setCreatePost((prevState) => ({ ...prevState, post: e.target.value }))}>
+                  <textarea type="text" name="post" id="" cols="50" rows="10" placeholder="What do you want to talk about?" value={createPost.post} onChange={handleInputChange}>
                   </textarea>
-                  <div className="image-upload-section">
-                    {createPost.photo && (
-                      <img
-                        className="w-100"
-                        style={{ height: "300px", objectFit: "contain" }}
-                        src={URL.createObjectURL(createPost.photo)}
-                        alt="Preview"
-                      />
-                    )}
-                    <input type="file" name="photo" placeholder="Give media link here" className="form-control" onChange={handleInputChange} />
-                  </div>
-
+                  <input type="text" name="photo" placeholder="Give media link here" className="form-control" value={createPost.photo} onChange={handleInputChange} />
 
                   <div className="imgogi">
                     <i> <FaRegSmile /> </i>
@@ -275,7 +231,7 @@ console.log(demo);
           <div className="main-home">
             <div className="top-area">
               <div className="top-line">
-                <img src="https://scontent.fdac24-4.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=FPahSXTgpmMAX-Ukz2s&_nc_ht=scontent.fdac24-4.fna&oh=00_AfCMmoPANcmV8SxJwA-5Kf3BAcAtxoymC82iD2hYcYXnvA&oe=65B94544" alt="" />
+                <img src="https://scontent.fdac24-4.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=h4ckv853pEUAX89ClSt&_nc_ht=scontent.fdac24-4.fna&oh=00_AfD1w2zHbDBzs_9ceKQaVHc6z-2-ZI-PEcCkP9lUQgOZTw&oe=65BD39C4" alt="" />
                 <h6 onClick={handleShowPostModal}>Star a post</h6>
               </div>
               <div className="post-category">
@@ -313,8 +269,8 @@ console.log(demo);
                               <i><BsThreeDots /></i>
                             </Dropdown.Toggle>
                             <Dropdown.Menu className="menu-option">
-                              <Dropdown.Item onClick={() => handleEditPost(item)}> Edit post</Dropdown.Item>
-                              <Dropdown.Item onClick={() => handleDeletePost(item.id)} > Delete post </Dropdown.Item>
+                              <Dropdown.Item  onClick={() => handleEditPost(item)}> Edit post</Dropdown.Item>
+                              <Dropdown.Item  onClick={() => handleDeletePost(item.id)} > Delete post </Dropdown.Item>
                             </Dropdown.Menu>
                           </Dropdown>
 
@@ -329,7 +285,7 @@ console.log(demo);
 
                       <div className="post-top">
                         <div className="user-info-area">
-                          <img src="https://scontent.fdac24-4.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=FPahSXTgpmMAX-Ukz2s&_nc_ht=scontent.fdac24-4.fna&oh=00_AfCMmoPANcmV8SxJwA-5Kf3BAcAtxoymC82iD2hYcYXnvA&oe=65B94544" alt="" />
+                          <img src="https://scontent.fdac24-4.fna.fbcdn.net/v/t39.30808-6/412880005_3709095272655142_1248761113307502751_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=h4ckv853pEUAX89ClSt&_nc_ht=scontent.fdac24-4.fna&oh=00_AfD1w2zHbDBzs_9ceKQaVHc6z-2-ZI-PEcCkP9lUQgOZTw&oe=65BD39C4" alt="" />
                           <div className="user-info">
                             <h6>Shohanur Rahman</h6>
                             <p>WordPress / React / NodeJs / MongoDB</p>
